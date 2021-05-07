@@ -1,0 +1,77 @@
+Although there are already a lot of good security features built into Linux-based systems, one very important potential vulnerability can exist when local access is granted - - that is file permission based issues resulting from a user not assigning the correct permissions to files and directories. So based upon the need for proper permissions.
+
+Basic File Permissions :
+Each file nd directory have three user based permission groups : 
+1) owner     - The Owner permissions apply only the owner of the file or directory, they will not impact the actions of other users.
+2) group     - The Group permissions apply only to the group that has been assigned to the file or directory, they will not effect the actions of other users.
+3) all users - The All Users permissions apply to all other users on the system, this is the permission group that you want to watch the most.
+
+Permission Types :
+Each file or directory has three basic permission types:
+1) read    - The Read permission refers to a user's capability to read the contents of the file.
+2) write   - The Write permissions refer to a user's capability to write or modify a file or directory.
+3) execute - The Execute permission affects a user's capability to execute a file or view the contents of a directory.
+
+Viewing the Permissions :
+
+While using ls -l command, it displays various information related to file permission as follows :
+
+The permission in the command line is displayed as: _rwxrwxrwx 1 owner:group
+1) User rights/Permissions
+   1.1) The first character that I marked with an underscore is the special permission flag that can vary.
+   1.2) The following set of three characters (rwx) is for the owner permissions.
+   1.3) The second set of three characters (rwx) is for the Group permissions.
+   1.4) The third set of three characters (rwx) is for the All Users permissions.
+2) Following that grouping since the integer/number displays the number of hardlinks to the file.
+3) The last piece is the Owner and Group assignment formatted as Owner:Group.
+    
+Commands are available to change the owner and the group of files :
+
+1) chown :The chown command stands for "change owner" and is used to change the owner of a file.
+2) chgrp : The chgrp command stands for "change group" and is used to change the group of a file.
+3) chmod :To change the file or the directory permissions, you use the change mode command.  
+
+Modifying the permission : 
+
+1) Explicitly Defining Permissions : 
+   
+   The Permission Groups used are:
+   u      - Owner
+   g      - Group
+   o or a - All Users
+   
+   The Permission Types that are used are:
+   r - Read
+   w - Write
+   x - Execute
+   
+   Example  : We have a file named file1 that has currently set permissions to _rw_rw_rw, which means that the owner, group and all users have read and write permission. Now we want to remove the read and write permissions from the all users group.
+   Solution : To make this modification you would invoke the command    - chmod a-rw file1
+              To add the permissions above you would invoke the command - chmod a+rw file1
+              
+2) Using Binary References to Set permissions
+    
+     We will understand this with one  example so chmod 640 file1, which means that the owner has read and write permissions, the group has read permissions, and all other user have no rights to the file
+     
+     The first number represents the Owner permission; the second represents the Group permissions; and the last number represents the permissions for all other users. The numbers are a binary representation of the rwx string.
+     
+     r = 4
+     w = 2
+     x = 1
+    
+     We will add the numbers to get the number representing the permissions we wish to set.We will need to include the binary permissions for each of the three permission groups.
+     So to set a file to permissions on file1 to read _rwxr_____, we will enter chmod 740 file1.    
+     
+Total Read, Write and Execute permissions :
+
+1) Execute permission                                        :	--x
+2) Write permission                                          :	-w-
+3) Execute and write permission: 1 (execute) + 2 (write) = 3 :	-wx
+4) Read permission                                           :	r--
+5) Read and execute permission: 4 (read) + 1 (execute) = 5   :	r-x
+6) Read and write permission: 4 (read) + 2 (write) = 6	     :  rw-
+7) All permissions: 4 (read) + 2 (write) + 1 (execute) = 7	 :  rwx
+            
+            
+            
+    
