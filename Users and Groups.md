@@ -76,6 +76,3 @@ The operations perfermed on groups and users are :
 12) id                : Used to get data about user and its group 
 13) chage             : Used to change user password expiry information.
 14) sudo              : Used to run one or more commands as another user typically with superuser permissions.
-
-
-
