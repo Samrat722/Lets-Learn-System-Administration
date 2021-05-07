@@ -118,8 +118,8 @@ Soft Links:
             
              5) Removing soft link doesn't affect anything but removing original file, the link becomes "Dangling" link, which points to nonexistent file.
              
-             6) A soft link can link to a directory.
-
+             6) A soft link can link to a directory. 
+             
              7) Command to create a soft link: ln -s file.txt softlink.txt
                    
          
