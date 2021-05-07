@@ -1,0 +1,40 @@
+Security-Enhanced Linux (SELinux) is a security architecture for Linux systems that allows administrators to have more control over who can access the system.
+It acts as protective agent on servers.
+SELinux is the security implementation which enhances system security and in the event of security breach, it stops that from spreading in entire system.
+If SELinux is enabled, hackers will not be able to access the other services available on sever as well as they will not be able to write anything in /tmp or /var/tmp directory.
+
+Mode of SeLinux :
+SELinux works in three modes; Disable, Permissive and Enforcing. In disable mode SELinux remains completely disable. If SELinux is enabled, it will be in either Permissive mode or in Enforcing mode.
+In permissive mode SELinux will only monitor the interaction. In enforcing mode SELinux will also filter the interaction with monitoring.
+
+1) Enforcing  - Enforcing mode is the default mode at installation of SELinux. It will enforce the policies on the system, deny access and log actions.
+2) Permissive - Permissive mode is the most commonly used mode for troubleshooting SELinux. In this mode, SELinux enables but does not enforce security policies. Also, this means that actions will result in a warning and log for the system administrator.
+3) Disabled   - Disabled mode means that SELinux is turned off and the security policies do not protect the server.
+
+Basic SeLinux Commands : 
+
+1) Checking SeLinux Status            : After launching the terminal, suppose we would like to examine the status of SELinux, i.e., we would like to determine whether SELinux is enabled.
+                                        We can view the status by executing the command sestatus
+                    Syntax            : sestatus
+                                        Running this command we will understand if SeLinux is enabled or not.
+                                      
+2) Changing SeLinux Status            : SELinux is always enabled by default in Linux-based systems. However, if you feel like turning SELinux off or disabling it then you can change using this command sudo nano /etc/selinux/config.
+                    Syntax            : sudo nano /etc/selinux/config
+                                        When this command is executed, the SELinux configuration file will open with the nano editor,Now, you need to find out the SELinux variable in this file and change its value from “Enforcing” to “Disabled,” After that, press Ctrl+ X to save your SELinux configuration file and get back to the terminal.
+                                       
+3) Checking SeLinux Mode of Operation : SELinux is enabled by default and works in the “Enforcing” mode, which is its default mode.
+                                        This can also be verified by running the command below-
+                    Syntax            : getenforce
+                                        After executing the above command, we will see that SELinux is operating in the “Enforcing” mode.
+                                        
+4) Changing SELinux Mode of Operation : You can always change the default mode of operation of SELinux from “Enforcing” to “Permissive".
+                    Syntax            : sudo setenforce 0
+                                        When used with the “setenforce” command, the “0” flag changes the mode of SELinux from “Enforcing” to “Permissive.”
+                                        
+5) Viewing SELinux Policy Modules     : We can also view SELinux policy modules that are currently running on our system. 
+                                        The policy modules of SELinux can be viewed by running the following command in the terminal
+                    Syntax            : sudo semodule –l
+                                        Executing this command will display all currently running SELinux policy modules in our terminal.
+                                        
+                    
+                     
