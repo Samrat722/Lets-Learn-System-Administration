@@ -1,0 +1,39 @@
+Storage in Linux :
+1) The process of dividing a disk into logical areas that can be worked with separately is called partitioning.
+2) Storage is directly attached to hardware.
+
+Lets learn with Hardware :
+Motherboard has two firmware chips :
+1) BIOS :
+- It will support MBR ( Master Boot Record )
+  
+Let's see about MBR :
+1) In entire hardisk first few bits are stored for metadata.
+2) We have hardisk of size 2TB.
+3) In MBR there are two types of partition :
+   - Primary Partition - We can keep files that help in booting process in primary partition.
+   - Extended Partition  - We can keep sensitive and other files.
+4) In MBR we can make 4 primary and 16 extendaed partitions.
+   
+
+2) UEFI
+- It will support GPT ( GUID Partition Table )
+
+Let's see about GPT :
+1) GPT is newer version of UEFI.
+2) In GPT we have hardisk size of 10TB.
+3) In GPT in the end we have backup of the metadata, what will happen if we have partitions in between and our metadata gets corrupted we will still have backup in the end.
+4) In MBR we can create 4 primary partitions but in GPT wecan create 664 partitions.
+
+Steps to crete a partition : 
+1) List partitions => parted -l
+2) Label Partition => parted /dev/vdb mklabel msdos
+3) Use mkpart to make partition => parted /dev/vdb => p => mkpart => primary => xfs => 2048s => x% => quit
+4) Let the partition be created or settled => udevadm settled  
+5) Attach file system to partition => mkfs.xfs /dev/vdb1
+6) Create a mount point directory => mkdir /archive
+7) Add entry in fstab => cat /etc/fstab => vi /etc/fstab => lsblk --fs /dev/vdb
+8) Systemctl deamon-reload => systemctl deamon-reload
+9) Mount the partition on directory => mount /archive => df -h 
+
+   			
