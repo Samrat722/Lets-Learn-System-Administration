@@ -33,7 +33,7 @@ Steps to create LVM :
 3) Use mkpart to make a partitio n=> parted /dev/vdb => mkpart => primary => xfs => 2048s => x% =>  flag set => set1 => LVM => on => p => quit
 4) Let the partition be created/settled => pvcreate /dev/vdb1 /dev/vdc1 => vgcreate servervg /dev/vdb1 /dev/vdc1=> vgdisplay =>  lvcreate -n serverlv -L	10vg servervg => lvdisplay => vgdisplay
 5) Attach the file system to the partition => mkfs.xFs /dev/servervg/serverlv
-6. Create a mount point directory => mkdir /data
-7. Add entry in fstab => vi/etc/fstab => /dev/servervg/serverlv /data xfs default 1 2 => :wq 
-8. Systemctl daemon-reload => system ctl daemon-reload 
-9. Mount the partition on the directory => mount/data =>  df-h
+6) Create a mount point directory => mkdir /data
+7) Add entry in fstab => vi/etc/fstab => /dev/servervg/serverlv /data xfs default 1 2 => :wq 
+8) Systemctl daemon-reload => system ctl daemon-reload 
+9) Mount the partition on the directory => mount/data =>  df-h
