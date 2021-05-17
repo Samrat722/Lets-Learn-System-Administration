@@ -1,0 +1,39 @@
+LVM :
+1) LVM stands for Logical Volume Manager.
+2) LVM creates a layer of abstraction over physical storage, allowing you to create logical storage volumes.
+3) LVM is a type of storage virtualization that allows operators far more flexibility in storage management than standard partitioning.
+
+Let's learn with example :
+1) We have two e-commerce website which is E1 & E2 and storage for both e-commerce website is 1TB each.
+2) Now E1 website is working properly so more and more data is being collected on E1 website but E2 is not working but we have given 1TB storage so that storage is wasted.So we have to add storage to E1 website.
+3) In linux if we have multiple partitions we can convert it in a physical volume.
+4) The advantage of converting in physical volumes is that from physical volumes we can convert it in big volume group. And from that volume group we can assign logical volume.
+5) The benefit of having logical volume is that we can increase and decrease the size of logial volume & we can attach as many as logical volumes  from a volue group.
+6) So we will create a physical volumes of E1 & E2. From that we will create a volume group of 2TB, and from volume group we will create a logical volume , giving more storage to E1 and reducing storage of E2.
+
+Now let's learn about 3 concepts of LVM :
+1) Physical Volumes : 
+  - A physical volume is any physical storage device, such as a Hard Disk Drive (HDD), Solid State Drive (SSD), or partition, that has been initialized as a physical volume with LVM.
+  - We can use "pvcreate" command to create the physical volume
+  - "pvdisplay" command to display the physical volume
+   
+2) Volume Groups :
+  - Physical Volumes are combined into volume group.
+  - We can use "vgcreate" command to create volume group.
+  - "vgdisplay" to display a volume group.
+   
+3) Logical Volumes :
+  - Volume Group is divided into Logica Volumes
+  - Once volume group is created wwe can creae a logical volume using "lvcreate" command specifying the size of logical volume.
+  - "lvdisplay" is used to display the logical volume.
+  
+Steps to create LVM :
+1) List Partitions => parted-l
+2) Label a Partition =>  parted  /dev/vdb mklabel msdos => parted -l
+3) Use mkpart to make a partitio n=> parted /dev/vdb => mkpart => primary => xfs => 2048s => x% =>  flag set => set1 => LVM => on => p => quit
+4) Let the partition be created/settled => pvcreate /dev/vdb1 /dev/vdc1 => vgcreate servervg /dev/vdb1 /dev/vdc1=> vgdisplay =>  lvcreate -n serverlv -L	10vg servervg => lvdisplay => vgdisplay
+5) Attach the file system to the partition => mkfs.xFs /dev/servervg/serverlv
+6. Create a mount point directory => mkdir /data
+7. Add entry in fstab => vi/etc/fstab => /dev/servervg/serverlv /data xfs default 1 2 => :wq 
+8. Systemctl daemon-reload => system ctl daemon-reload 
+9. Mount the partition on the directory => mount/data =>  df-h
