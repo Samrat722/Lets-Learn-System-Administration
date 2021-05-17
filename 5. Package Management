@@ -6,12 +6,12 @@ Package management tools keep track of updates and upgrades so that the user doe
        3) Yum is a package manager & YUM reads the dependencies file and build instructions, downloads the dependencies, then builds the package.
 
 We can use the following commands to interact with YUM :
-1) yum install PACKAGENAME - Installs the specified package  along with any required dependencies.
-2) yum erase PACKAGENAME - Removes the specified package  from your system.
-3) yum search search-pattern - Searches the list of package names and descriptions for packages that match the search pattern and provides a list of package names, with architectures and a brief description of the package contents. Note that regular expression searches are not permitted.
-4) yum info package-name(s) - The results of the info command provides the name, description of the package, as well as a link to the upstream home page for the software, release versions and the installed size of the software.
-5) yum upgrade - Upgrades all packages installed in your system to the latest release
-6) yum history	:Displays history  in past transactions
+1) yum install package-name => Installs the specified package  along with any required dependencies.
+2) yum erase package-name => Removes the specified package  from your system.
+3) yum search search-pattern => Searches the list of package names and descriptions for packages that match the search pattern and provides a list of package names, with architectures and a brief description of the package contents. Note that regular expression searches are not permitted.
+4) yum info package-name(s) => The results of the info command provides the name, description of the package, as well as a link to the upstream home page for the software, release versions and the installed size of the software.
+5) yum upgrade => Upgrades all packages installed in your system to the latest release
+6) yum history => Displays history  in past transactions
  
 -rpm : 1) It is the package management system used by Linux Standard Base (LSB) -compliant distributions for low-level handling of packages ,Just like dpkg, it can query, install, verify, upgrade, and remove packages, and is more frequently used by Fedora-based distributions, such as RHEL and CentOS.
        2) RPM is a package container that includes information on what dependencies are needed by the package and build instructions.
